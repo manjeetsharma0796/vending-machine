@@ -2,12 +2,20 @@ const vendCoins = function(amount) {
   let oneRupeeCoin;
   let twoRupeeCoin;
   let fiveRupeeCoin;
+  let tenRupeeCoin;
   let remaining;
   let total = 0;
 
   if (amount !== 0) {
-    fiveRupeeCoin = Math.floor(amount / 5);
-    remaining = amount - fiveRupeeCoin * 5;
+    tenRupeeCoin = Math.floor(amount / 10);
+    remaining = amount - tenRupeeCoin * 10;
+    total += tenRupeeCoin;
+  } else {
+    return total;
+  }
+  if (remaining !== 0) {
+    fiveRupeeCoin = Math.floor(remaining / 5);
+    remaining = remaining - fiveRupeeCoin * 5;
     total += fiveRupeeCoin;
   } else {
     return total;

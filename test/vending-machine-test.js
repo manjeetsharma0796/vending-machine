@@ -16,6 +16,7 @@ const vendingTest = function() {
   test.assertEquals(vending.vendCoins(13, [1, 2, 10]), 3, "Should give 3 coin for amount Rs 13 when the denomination set is Rs1, Rs2, Rs10");
   test.assertEquals(vending.vendCoins(13, [1, 2, 10]), 3, "Should give 3 coin for amount Rs 13 when the denomination set is Rs1, Rs2, Rs10");
   test.assertEquals(vending.vendCoins(18, [1, 2, 5, 10]), 4, "Should give 3 coin for amount Rs 18 when the denomination set is Rs1, Rs2, Rs5, Rs10");
+  test.assertEquals(vending.vendCoins(30, [1, 4, 7]), 6, "Should give 6 coin for amount Rs 30 when the denomination set is Rs1, Rs4, Rs7");
 }
 vendingTest();
 test.displaySummary();

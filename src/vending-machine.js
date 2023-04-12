@@ -1,35 +1,39 @@
+const maxSort = function(list) {
+  let maxList = [];
+  let eliminateIndex;
+
+  for ( ;maxList.length < list.length; ) {
+    let max = 0;
+    for (let index = 0; index < list.length; index++) {
+      if (max < list[index]) {
+        max = list[index];
+      };  
+    };
+
+    eliminateIndex = list.indexOf(max);
+    list[eliminateIndex] = 0;
+    maxList.unshift(max);
+  };
+
+  return maxList;
+}
+
 const vendCoins = function(amount, denominationSet) {
-  let oneRupeeCoin;
-  let twoRupeeCoin;
-  let fiveRupeeCoin;
-  let tenRupeeCoin;
+  let sortedDenominationSet = maxSort(denominationSet);
+  let coin;
   let remainingAmount = amount;
   let totalCoin = 0;
-  for (let index = denominationSet.length - 1 ; index >= 0; index--) {
+  for (let index = sortedDenominationSet.length - 1 ; index >= 0; index--) {
     if (remainingAmount !== 0) {
-      let value = denominationSet[index];
+      let value = sortedDenominationSet[index];
 
-      switch (denominationSet[index]) {
+      switch (sortedDenominationSet[index]) {
 
-        case value: tenRupeeCoin = Math.floor(remainingAmount / value);
-          remainingAmount = remainingAmount - tenRupeeCoin * value;
-          totalCoin += tenRupeeCoin;
+        case value: coin = Math.floor(remainingAmount / value);
+          remainingAmount = remainingAmount - coin * value;
+          totalCoin += coin;
           break;
 
-          //        case 5: fiveRupeeCoin = Math.floor(remainingAmount / 5);
-          //          remainingAmount = remainingAmount - fiveRupeeCoin * 5;
-          //          totalCoin += fiveRupeeCoin;
-          //          break;
-          //
-          //        case 2: twoRupeeCoin = Math.floor(remainingAmount / 2);
-          //          remainingAmount = remainingAmount - twoRupeeCoin * 2;
-          //          totalCoin += twoRupeeCoin;
-          //          break;
-          //
-          //        case 1: oneRupeeCoin = Math.floor(remainingAmount / 1);
-          //          remainingAmount = remainingAmount - oneRupeeCoin * 1;
-          //          totalCoin += oneRupeeCoin;
-          //          break;
       }
     };
 
@@ -39,3 +43,4 @@ const vendCoins = function(amount, denominationSet) {
 };
 
 exports.vendCoins = vendCoins;
+exports.maxSort = maxSort;

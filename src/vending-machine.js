@@ -5,6 +5,7 @@ const vendCoins = function(amount, denominationSet) {
   let tenRupeeCoin;
   let remainingAmount = amount;
   let totalCoin = 0;
+  
   for (let index = denominationSet.length - 1 ; index >= 0; index--) {
     if (remainingAmount !== 0) {
       switch (denominationSet[index]) {

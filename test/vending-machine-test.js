@@ -32,3 +32,11 @@ const testMaxSort = function() {
 }
 testMaxSort();
 test.displaySummary();
+
+const testGetMaxElement = function() {
+  test.displayHeadline("getMaxElement");
+  test.assertEquals(vending.getMaxElement([1]), 1, "Should give 1 when list provided is 1");
+  test.assertEquals(vending.getMaxElement([1, 9]), 9, "Should give 9 when list provided is 1, 9");
+  test.assertEquals(vending.getMaxElement([7, 1, 2]), 7, "Should give 7 when list provided is 7, 1, 2");
+}
+testGetMaxElement();

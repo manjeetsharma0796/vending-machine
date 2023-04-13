@@ -1,17 +1,21 @@
+const getMaxElement = function(list) {
+  let max = list[0];
+  for (let value of list) {
+    max = Math.max(max, value);
+  };
+
+  return max;
+}
+
 const maxSort = function(list) {
+  let unsorted = list.slice(0, list.length);
   let maxList = [];
   let eliminateIndex;
 
-  for ( ;maxList.length < list.length; ) {
-    let max = 0;
-    for (let index = 0; index < list.length; index++) {
-      if (max < list[index]) {
-        max = list[index];
-      };  
-    };
+  while (unsorted.length > 0) {
+    let max = getMaxElement(unsorted);
 
-    eliminateIndex = list.indexOf(max);
-    list[eliminateIndex] = 0;
+    unsorted.splice(unsorted.indexOf(max), 1);
     maxList.unshift(max);
   };
 
@@ -20,23 +24,18 @@ const maxSort = function(list) {
 
 const vendCoins = function(amount, denominationSet) {
   let sortedDenominationSet = maxSort(denominationSet);
-  let coin;
+  let coinQuantity;
   let remainingAmount = amount;
   let totalCoin = 0;
-  for (let index = sortedDenominationSet.length - 1 ; index >= 0; index--) {
-    if (remainingAmount !== 0) {
-      let value = sortedDenominationSet[index];
+  let index = sortedDenominationSet.length - 1;
 
-      switch (sortedDenominationSet[index]) {
+  while (remainingAmount !== 0 && index >=0) {
+    let coinValue = sortedDenominationSet[index];
 
-        case value: coin = Math.floor(remainingAmount / value);
-          remainingAmount = remainingAmount - coin * value;
-          totalCoin += coin;
-          break;
-
-      }
-    };
-
+    coinQuantity = Math.floor(remainingAmount / coinValue);
+    remainingAmount = remainingAmount - coinQuantity * coinValue;
+    totalCoin += coinQuantity;
+    index--;
   };
 
   return totalCoin;
@@ -44,3 +43,4 @@ const vendCoins = function(amount, denominationSet) {
 
 exports.vendCoins = vendCoins;
 exports.maxSort = maxSort;
+exports.getMaxElement = getMaxElement;

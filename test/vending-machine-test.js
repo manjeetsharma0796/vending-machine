@@ -14,7 +14,6 @@ const vendingTest = function() {
   test.assertEquals(vending.vendCoins(3, [2, 1]), 2, "Should give 2 coins for amount Rs 3 when the unordered denomination set of Rs2, Rs1 provided");
   test.assertEquals(vending.vendCoins(13, [2, 1, 7]), 4, "Should give 4 coins for amount Rs 13 when the unordered denomination set of Rs2, Rs1, Rs 7 provided");
 }
-vendingTest();
 
 const testGetMaxElement = function() {
   test.displayHeadline("\n" + "getMaxElement");
@@ -22,7 +21,6 @@ const testGetMaxElement = function() {
   test.assertEquals(vending.getMaxElement([1, 9]), 9, "Should give 9 when list provided is 1, 9");
   test.assertEquals(vending.getMaxElement([7, 1, 2]), 7, "Should give 7 when list provided is 7, 1, 2");
 }
-testGetMaxElement();
 
 const testMaxSort = function() {
   test.displayHeadline("\n" + "maxSort");
@@ -33,5 +31,26 @@ const testMaxSort = function() {
   test.testingArray(vending.maxSort([1, -7, 4]), [-7, 1, 4], "Should return -7, 1, 4 when a list provided is 1, -7, 4");
 
 }
-testMaxSort();
-test.displaySummary();
+
+const testDetermineCoinByDenomination = function() {
+  test.displayHeadline("\n" + "determineCoinByDenomination");
+  test.assertEquals(Object.keys(vending.determineCoinByDenomination(3, [1])).length, 1, "Object length should be 1 when amount is 3 and set is Rs 1")
+  test.assertEquals(vending.determineCoinByDenomination(3, [1])[1], 3, "Rs 1 quantity should be 3 when amount is 3 and set is Rs 1")
+  test.assertEquals(Object.keys(vending.determineCoinByDenomination(3, [1, 2])).length, 2, "Object length should be 2 when amount is 3 and set are Rs 1, Rs 2")
+  test.assertEquals(vending.determineCoinByDenomination(3, [1, 2])[1], 1, "Rs 1 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2")
+  test.assertEquals(vending.determineCoinByDenomination(3, [1, 2])[2], 1, "Rs 2 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2")
+  test.assertEquals(Object.keys(vending.determineCoinByDenomination(5, [2, 1])).length, 2, "Object length should be 2 when amount is 3 and unordered set of Rs 2, Rs 1")
+  test.assertEquals(vending.determineCoinByDenomination(5, [2, 1])[2], 2, "Rs 2 quantity should be 2 when amount is 5 and unordered set of Rs 2, Rs 1")
+  test.assertEquals(vending.determineCoinByDenomination(5, [2, 1])[1], 1, "Rs 1 quantity should be 1 when amount is 5 and unordered set of Rs 2, Rs 1")
+}
+
+const main = function() {
+  vendingTest();
+  testGetMaxElement();
+  testMaxSort();
+  testDetermineCoinByDenomination();
+  test.displaySummary();
+
+}
+
+main();

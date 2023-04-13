@@ -9,7 +9,7 @@ const getMaxElement = function(list) {
 }
 
 const maxSort = function(list) {
-  let unsorted = list.slice(0, list.length);
+  let unsorted = list.slice(0);
   let sorted = [];
 
   while (unsorted.length > 0) {
@@ -28,7 +28,7 @@ const vendCoins = function(amount, denominationSet) {
   let totalCoin = 0;
   let index = sortedDenominationSet.length - 1;
 
-  while (remainingAmount !== 0 && index >=0) {
+  while (remainingAmount !== 0 && index >= 0) {
     let coinValue = sortedDenominationSet[index];
 
     let  coinQuantity = Math.floor(remainingAmount / coinValue);
@@ -40,6 +40,23 @@ const vendCoins = function(amount, denominationSet) {
   return totalCoin;
 };
 
+const determineCoinByDenomination = function(amount, denominationSet) {
+  let quantitySet = {};
+  let remainingAmount = amount;
+  let sortedSet = maxSort(denominationSet);
+
+  for (let index = sortedSet.length - 1; index >= 0; index--) {
+    let value = sortedSet[index];
+    let quantity = vendCoins(remainingAmount, [value]);
+
+    quantitySet[value] = quantity;  
+    remainingAmount = remainingAmount - quantity * value;
+  };
+
+  return quantitySet;
+}
+
 exports.vendCoins = vendCoins;
 exports.maxSort = maxSort;
 exports.getMaxElement = getMaxElement;
+exports.determineCoinByDenomination = determineCoinByDenomination;

@@ -117,23 +117,46 @@ const testMaxSort = function() {
 
 const testDetermineCoinByDenomination = function() {
   displayHeadline("\n" + "determineCoinByDenomination");
-  assertEquals(Object.keys(determineCoinByDenomination(3, [1])).length, 1, "Object length should be 1 when amount is 3 and set is Rs 1")
-  assertEquals(determineCoinByDenomination(3, [1])[1], 3, "Rs 1 quantity should be 3 when amount is 3 and set is Rs 1")
-  assertEquals(Object.keys(determineCoinByDenomination(3, [1, 2])).length, 2, "Object length should be 2 when amount is 3 and set are Rs 1, Rs 2")
-  assertEquals(determineCoinByDenomination(3, [1, 2])[1], 1, "Rs 1 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2")
-  assertEquals(determineCoinByDenomination(3, [1, 2])[2], 1, "Rs 2 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2")
-  assertEquals(Object.keys(determineCoinByDenomination(5, [2, 1])).length, 2, "Object length should be 2 when amount is 3 and unordered set of Rs 2, Rs 1")
-  assertEquals(determineCoinByDenomination(5, [2, 1])[2], 2, "Rs 2 quantity should be 2 when amount is 5 and unordered set of Rs 2, Rs 1")
-  assertEquals(determineCoinByDenomination(5, [2, 1])[1], 1, "Rs 1 quantity should be 1 when amount is 5 and unordered set of Rs 2, Rs 1")
-}
+  it("Object length should be 1 when amount is 3 and set is Rs 1", {
+    actual: Object.keys(determineCoinByDenomination(3, [1])).length, 
+    expected: 1
+  })
+  it("Rs 1 quantity should be 3 when amount is 3 and set is Rs 1", {
+    actual: determineCoinByDenomination(3, [1])[1],
+    expected: 3 
+  })
 
-const tests = function() {
-  testVendCoins();
-  testGetMaxElement();
-  testMaxSort();
-  testDetermineCoinByDenomination();
-  displaySummary();
+  it("Object length should be 2 when amount is 3 and set are Rs 1, Rs 2", {
+    actual: Object.keys(determineCoinByDenomination(3, [1, 2])).length, 
+    expected: 2
+  })
 
-}
+  it("Rs 1 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2", {
+    actual: determineCoinByDenomination(3, [1, 2])[1],
+    expected: 1 
+  })
 
-tests();
+  it("Rs 2 quantity should be 1 when amount is 3 and set is Rs 1, Rs 2", {
+    actual: determineCoinByDenomination(3, [1, 2])[2], 
+    expected: 1 
+  })
+
+  it("Object length should be 2 when amount is 3 and unordered set of Rs 2, Rs 1", {
+    Object.keys(determineCoinByDenomination(5, [2, 1])).length, 2, )
+
+  it("Rs 2 quantity should be 2 when amount is 5 and unordered set of Rs 2, Rs 1", {
+    determineCoinByDenomination(5, [2, 1])[2], 2, )
+  it("Rs 1 quantity should be 1 when amount is 5 and unordered set of Rs 2, Rs 1", {
+    determineCoinByDenomination(5, [2, 1])[1], 1, )
+  }
+
+    const tests = function() {
+      testVendCoins();
+      testGetMaxElement();
+      testMaxSort();
+      testDetermineCoinByDenomination();
+      displaySummary();
+
+    }
+
+    tests();

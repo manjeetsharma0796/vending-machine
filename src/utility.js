@@ -1,4 +1,4 @@
-const getMaxElement = function(list) {
+const getMaxElement = function (list) {
   let max = list[0];
 
   for (let value of list) {
@@ -6,7 +6,7 @@ const getMaxElement = function(list) {
   }
 
   return max;
-}
+};
 
 const maxSort = function(list) {
   let unsorted = list.slice(0);
@@ -22,5 +22,7 @@ const maxSort = function(list) {
   return sorted;
 };
 
-exports.getMaxElement = getMaxElement;
-exports.maxSort = maxSort;
+module.exports = {
+  getMaxElement,
+  maxSort
+};

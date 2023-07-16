@@ -2,3 +2,4 @@
 *.DS*
 *.swo
 *.swn
+node_modules
